@@ -1,0 +1,33 @@
+From a47f181ffead359bfd45abd8bb0c528521723622 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Sun, 9 Mar 2025 19:38:56 +0800
+Subject: [PATCH] libarchive: pass correct cflags
+
+* revert 88643e3
+---
+ packages/libarchive.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/packages/libarchive.cmake b/packages/libarchive.cmake
+index fa1186e..2cc5ca5 100644
+--- a/packages/libarchive.cmake
++++ b/packages/libarchive.cmake
+@@ -12,7 +12,6 @@ ExternalProject_Add(libarchive
+     SOURCE_DIR ${SOURCE_LOCATION}
+     GIT_CLONE_FLAGS "--filter=tree:0"
+     UPDATE_COMMAND ""
+-    GIT_RESET de77e6d67166bf667f057bd9515c77bb8dc0f30a
+     CONFIGURE_COMMAND ${EXEC} CONF=1 cmake -H<SOURCE_DIR> -B<BINARY_DIR>
+         -G Ninja
+         -DCMAKE_BUILD_TYPE=Release
+@@ -37,6 +36,7 @@ ExternalProject_Add(libarchive
+         -DBUILD_TESTING=OFF
+         -DENABLE_TEST=OFF
+         -DWINDOWS_VERSION=WIN10
++        "-DCMAKE_C_FLAGS='-lxml2 -lbz2 -llzo2 -lz -lbrotlienc -lbrotlidec -lbrotlicommon -lzstd -lws2_32 -lgdi32 -lcrypt32 -liconv -lbcrypt'"
+     BUILD_COMMAND ${EXEC} ninja -C <BINARY_DIR>
+     INSTALL_COMMAND ${EXEC} ninja -C <BINARY_DIR> install
+     LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
+-- 
+2.48.1
+
