@@ -196,7 +196,8 @@ jobs:
       - name: Checkout toolchain
         uses: actions/checkout@v4
         with:
-          repository: shinchiro/mpv-winbuild-cmake
+          repository: zhongfly/mpv-winbuild-cmake
+          ref: zhongfly-patch-1
           path: mpv-winbuild-cmake
           fetch-depth: 0
       - name: Prepare
