@@ -1,0 +1,31 @@
+From 2b43cd964a1411c1f2874739bf125f75d2c308c7 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Tue, 29 Jul 2025 08:14:24 +0800
+Subject: [PATCH] Update ffmpeg.cmake
+
+---
+ packages/ffmpeg.cmake | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/packages/ffmpeg.cmake b/packages/ffmpeg.cmake
+index d382680c8..6d5744344 100644
+--- a/packages/ffmpeg.cmake
++++ b/packages/ffmpeg.cmake
+@@ -6,7 +6,6 @@ ExternalProject_Add(ffmpeg
+         bzip2
+         lame
+         lcms2
+-        openssl
+         libssh
+         libsrt
+         libass
+@@ -93,7 +92,7 @@ ExternalProject_Add(ffmpeg
+         ${ffmpeg_uavs3d_cmd}
+         --enable-libxvid
+         --enable-libzimg
+-        --enable-openssl
++        --enable-schannel
+         --enable-libxml2
+         --enable-libmysofa
+         --enable-libssh
+
