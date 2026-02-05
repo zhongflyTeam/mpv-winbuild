@@ -1,4 +1,4 @@
-From 7d6c99dfb7b894e4b6294fc308a915cb2bc5954c Mon Sep 17 00:00:00 2001
+From 2a0c1c883a1cf1cba00a15942977baa766a4b576 Mon Sep 17 00:00:00 2001
 From: zhongfly <11155705+zhongfly@users.noreply.github.com>
 Date: Wed, 4 Feb 2026 22:06:00 +0800
 Subject: [PATCH] build(ffmpeg): always build shared FFmpeg and bundle DLLs for
@@ -97,11 +97,11 @@ index 252c687..07e7214 100644
  )
  
 diff --git a/packages/mpv.cmake b/packages/mpv.cmake
-index 66613e2..0e3b7e3 100644
+index 66613e2..3774674 100644
 --- a/packages/mpv.cmake
 +++ b/packages/mpv.cmake
-@@ -67,6 +67,16 @@ ExternalProject_Add_Step(mpv strip-binary
-     COMMENT "Stripping mpv binaries"
+@@ -83,6 +83,16 @@ ExternalProject_Add_Step(mpv copy-binary
+     COMMENT "Copying mpv binaries and manual"
  )
  
 +ExternalProject_Add_Step(mpv copy-ffmpeg-dlls
@@ -114,9 +114,9 @@ index 66613e2..0e3b7e3 100644
 +    COMMENT "Copying FFmpeg DLLs"
 +)
 +
- ExternalProject_Add_Step(mpv copy-binary
-     DEPENDEES strip-binary
-     COMMAND ${CMAKE_COMMAND} -E copy <BINARY_DIR>/mpv.exe                           ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.exe
+ set(RENAME ${CMAKE_CURRENT_BINARY_DIR}/mpv-prefix/src/rename.sh)
+ file(WRITE ${RENAME}
+ "#!/bin/bash
 -- 
 2.52.0.windows.1
 
