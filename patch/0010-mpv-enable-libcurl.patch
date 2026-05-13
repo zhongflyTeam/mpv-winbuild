@@ -1,0 +1,36 @@
+From f9eb97637ea40f1fc7ee877823ffa84f29616f33 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Wed, 13 May 2026 21:46:55 +0800
+Subject: [PATCH 3/3] mpv: enable libcurl
+
+---
+ packages/mpv.cmake | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/packages/mpv.cmake b/packages/mpv.cmake
+index 51920c9..57bee04 100644
+--- a/packages/mpv.cmake
++++ b/packages/mpv.cmake
+@@ -24,9 +24,11 @@ ExternalProject_Add(mpv
+         libsdl2
+         subrandr
+         libsixel
++        curl
+     GIT_REPOSITORY https://github.com/mpv-player/mpv.git
+     SOURCE_DIR ${SOURCE_LOCATION}
+     GIT_CLONE_FLAGS "--filter=tree:0"
++    PATCH_COMMAND ${EXEC} curl -sL https://github.com/mpv-player/mpv/pull/17879.patch | git am --3way --whitespace=fix
+     UPDATE_COMMAND ""
+     CONFIGURE_COMMAND ${EXEC} CONF=1 meson setup <BINARY_DIR> <SOURCE_DIR>
+         --prefix=${MINGW_INSTALL_PREFIX}
+@@ -57,6 +59,7 @@ ExternalProject_Add(mpv
+         -Dsubrandr=enabled
+         -Dsixel=enabled
+         ${mpv_gl}
++        -Dlibcurl=enabled
+         -Dc_args='-Wno-error=int-conversion'
+     BUILD_COMMAND ${EXEC} LTO_JOB=1 PDB=1 ninja -C <BINARY_DIR>
+     INSTALL_COMMAND ""
+-- 
+2.52.0.windows.1
+
