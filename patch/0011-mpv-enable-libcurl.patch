@@ -1,0 +1,50 @@
+From a55e391b7e2ccdd4dc1a23bc97dee511ca9a8997 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Wed, 13 May 2026 21:46:55 +0800
+Subject: [PATCH 4/6] mpv: enable libcurl
+
+---
+ packages/CMakeLists.txt | 2 +-
+ packages/mpv.cmake      | 3 +++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/packages/CMakeLists.txt b/packages/CMakeLists.txt
+index b36d309..9779c98 100644
+--- a/packages/CMakeLists.txt
++++ b/packages/CMakeLists.txt
+@@ -120,7 +120,7 @@ list(LENGTH ep ep_length)
+ message(STATUS "Parsing ${ep_length} packages")
+ 
+ # Exclude packages which dont depend on mpv when update
+-list(APPEND removed "flac" "opusfile" "libopusenc" "opus-tools" "termcap" "readline" "cryptopp" "sqlite" "libuv" "libsodium" "megasdk" "libsixel" "curl" "libressl" "mbedtls" "nettle" "gmp" "xvidcore" "expat")
++list(APPEND removed "flac" "opusfile" "libopusenc" "opus-tools" "termcap" "readline" "cryptopp" "sqlite" "libuv" "libsodium" "megasdk" "libsixel" "libressl" "mbedtls" "nettle" "gmp" "xvidcore" "expat")
+ list(REMOVE_ITEM repo ${removed})
+ list(REMOVE_ITEM ep ${removed})
+ list(TRANSFORM repo APPEND "-force-update" OUTPUT_VARIABLE update)
+diff --git a/packages/mpv.cmake b/packages/mpv.cmake
+index 51920c9..57bee04 100644
+--- a/packages/mpv.cmake
++++ b/packages/mpv.cmake
+@@ -24,9 +24,11 @@ ExternalProject_Add(mpv
+         libsdl2
+         subrandr
+         libsixel
++        curl
+     GIT_REPOSITORY https://github.com/mpv-player/mpv.git
+     SOURCE_DIR ${SOURCE_LOCATION}
+     GIT_CLONE_FLAGS "--filter=tree:0"
++    PATCH_COMMAND ${EXEC} curl -sL https://github.com/mpv-player/mpv/pull/17879.patch | git am --3way --whitespace=fix
+     UPDATE_COMMAND ""
+     CONFIGURE_COMMAND ${EXEC} CONF=1 meson setup <BINARY_DIR> <SOURCE_DIR>
+         --prefix=${MINGW_INSTALL_PREFIX}
+@@ -57,6 +59,7 @@ ExternalProject_Add(mpv
+         -Dsubrandr=enabled
+         -Dsixel=enabled
+         ${mpv_gl}
++        -Dlibcurl=enabled
+         -Dc_args='-Wno-error=int-conversion'
+     BUILD_COMMAND ${EXEC} LTO_JOB=1 PDB=1 ninja -C <BINARY_DIR>
+     INSTALL_COMMAND ""
+-- 
+2.52.0.windows.1
+

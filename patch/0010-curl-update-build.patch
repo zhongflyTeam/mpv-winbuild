@@ -1,7 +1,7 @@
-From 65d258ed49551a93c2b6bb0f7b03a1be6c1336b2 Mon Sep 17 00:00:00 2001
+From 3c98895a12024b263712ba22b26890aaf502e06e Mon Sep 17 00:00:00 2001
 From: zhongfly <11155705+zhongfly@users.noreply.github.com>
 Date: Wed, 13 May 2026 21:46:45 +0800
-Subject: [PATCH 2/3] curl: update build
+Subject: [PATCH 3/6] curl: update build
 
 ---
  packages/CMakeLists.txt                       |  2 +-
@@ -11,7 +11,7 @@ Subject: [PATCH 2/3] curl: update build
  delete mode 100644 packages/curl-0001-Skip-compiling-unnecessary-stuff.patch
 
 diff --git a/packages/CMakeLists.txt b/packages/CMakeLists.txt
-index 4b67093..6a1d406 100644
+index 76181ab..b36d309 100644
 --- a/packages/CMakeLists.txt
 +++ b/packages/CMakeLists.txt
 @@ -88,10 +88,10 @@ list(APPEND ep
