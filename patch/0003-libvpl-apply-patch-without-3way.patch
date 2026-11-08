@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Sun, 8 Nov 2026 15:36:48 +0000
+Subject: [PATCH] libvpl: apply patch without three-way merge
+
+The filtered libvpl clone does not contain the base blob needed by git am
+--3way. Apply the small compatibility patch against the checked-out source.
+---
+ packages/libvpl.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/packages/libvpl.cmake b/packages/libvpl.cmake
+--- a/packages/libvpl.cmake
++++ b/packages/libvpl.cmake
+@@ -5,7 +5,7 @@ ExternalProject_Add(libvpl
+     GIT_REMOTE_NAME origin
+     GIT_TAG main
+     UPDATE_COMMAND ""
+-    PATCH_COMMAND ${EXEC} git am --3way ${CMAKE_CURRENT_SOURCE_DIR}/libvpl-*.patch
++    PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/libvpl-*.patch
+     CONFIGURE_COMMAND ${EXEC} CONF=1 cmake -H<SOURCE_DIR> -B<BINARY_DIR>
+         -G Ninja
+         -DCMAKE_BUILD_TYPE=Release
+-- 
+2.54.0
