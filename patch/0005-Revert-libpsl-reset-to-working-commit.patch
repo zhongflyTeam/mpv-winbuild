@@ -1,0 +1,29 @@
+From c37fbd4d6799bb63f39737b76b37ec1d0096d6b6 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Mon, 9 Nov 2026 10:52:25 +0800
+Subject: [PATCH 4/5] Revert "libpsl: reset to working commit"
+
+This reverts commit a1ec878fad40b0bb9e19159d4d7f3f9f4bbac15d.
+---
+ packages/libpsl.cmake | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/packages/libpsl.cmake b/packages/libpsl.cmake
+index ab94fb7f..f9e00893 100644
+--- a/packages/libpsl.cmake
++++ b/packages/libpsl.cmake
+@@ -1,10 +1,8 @@
+ ExternalProject_Add(libpsl
+     GIT_REPOSITORY https://github.com/rockdaboot/libpsl.git
+     SOURCE_DIR ${SOURCE_LOCATION}
+-    GIT_CLONE_FLAGS "--sparse --filter=tree:0"
++    GIT_CLONE_FLAGS "--depth=1 --sparse --filter=tree:0"
+     GIT_CLONE_POST_COMMAND "sparse-checkout set --no-cone /* !/fuzz !tests !tools tools/meson.build"
+-    GIT_REMOTE_NAME origin
+-    GIT_RESET aa3a80e18f25caf3916636c8668dcc0fff7c016d
+     UPDATE_COMMAND ""
+     CONFIGURE_COMMAND ""
+     COMMAND ${EXEC} echo > <SOURCE_DIR>/tools/meson.build
+-- 
+2.45.2.windows.1
+

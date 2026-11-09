@@ -1,0 +1,25 @@
+From 62bb4c48942f4bee2899b68c28f8dd77dc498a8e Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Mon, 9 Nov 2026 10:40:34 +0800
+Subject: [PATCH 1/5] speex: switch to main branch
+
+---
+ packages/speex.cmake | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/packages/speex.cmake b/packages/speex.cmake
+index 9498c81b..09ef6aa4 100644
+--- a/packages/speex.cmake
++++ b/packages/speex.cmake
+@@ -5,6 +5,8 @@ ExternalProject_Add(speex
+     SOURCE_DIR ${SOURCE_LOCATION}
+     GIT_CLONE_FLAGS "--filter=tree:0"
+     UPDATE_COMMAND ""
++    GIT_REMOTE_NAME origin
++    GIT_TAG main
+     CONFIGURE_COMMAND ${EXEC} CONF=1 meson setup <BINARY_DIR> <SOURCE_DIR>
+         --prefix=${MINGW_INSTALL_PREFIX}
+         --libdir=${MINGW_INSTALL_PREFIX}/lib
+-- 
+2.45.2.windows.1
+
