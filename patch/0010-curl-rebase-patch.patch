@@ -1,0 +1,37 @@
+From 7e36e1eab5094a642c5a3c1771551f06b5ec3224 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Mon, 9 Nov 2026 16:03:06 +0800
+Subject: [PATCH] curl: rebase patch
+
+---
+ packages/curl-0001-libssh-include-scp-declarations.patch | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/packages/curl-0001-libssh-include-scp-declarations.patch b/packages/curl-0001-libssh-include-scp-declarations.patch
+index d74b458..c29e589 100644
+--- a/packages/curl-0001-libssh-include-scp-declarations.patch
++++ b/packages/curl-0001-libssh-include-scp-declarations.patch
+@@ -1,4 +1,4 @@
+-From f0af7fa91c93065430197c2ac4a96f2f8124b1dd Mon Sep 17 00:00:00 2001
++From b756f2a25360ed5c73d75a1feb4457ce95ad7ec9 Mon Sep 17 00:00:00 2001
+ From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+ Date: Tue, 15 Sep 2026 15:10:55 +0000
+ Subject: [PATCH] libssh: include SCP declarations
+@@ -8,7 +8,7 @@ Subject: [PATCH] libssh: include SCP declarations
+  1 file changed, 1 insertion(+)
+ 
+ diff --git a/lib/vssh/ssh.h b/lib/vssh/ssh.h
+-index b1071419fd..09267c1a0f 100644
++index bc048659e4..4c97accdfc 100644
+ --- a/lib/vssh/ssh.h
+ +++ b/lib/vssh/ssh.h
+ @@ -38,6 +38,7 @@ extern const struct Curl_protocol Curl_protocol_scp;
+@@ -20,4 +20,4 @@ index b1071419fd..09267c1a0f 100644
+  #endif
+  
+ -- 
+-2.55.0
++2.56.0
+-- 
+2.45.2.windows.1
+
