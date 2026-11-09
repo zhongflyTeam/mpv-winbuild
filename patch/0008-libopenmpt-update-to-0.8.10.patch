@@ -1,0 +1,27 @@
+From abf6efc87fb69ea5395736c59c7807371f87cda0 Mon Sep 17 00:00:00 2001
+From: zhongfly <11155705+zhongfly@users.noreply.github.com>
+Date: Mon, 9 Nov 2026 12:11:10 +0800
+Subject: [PATCH 1/2] libopenmpt: update to 0.8.10
+
+---
+ packages/libopenmpt.cmake | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/packages/libopenmpt.cmake b/packages/libopenmpt.cmake
+index e4eceb5e..ab69ccab 100644
+--- a/packages/libopenmpt.cmake
++++ b/packages/libopenmpt.cmake
+@@ -4,8 +4,8 @@ ExternalProject_Add(libopenmpt
+         ogg
+         vorbis
+         libsdl2
+-    URL https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.12+release.autotools.tar.gz
+-    URL_HASH SHA256=79AB3CE3672601E525B5CC944F026C80C03032F37D39CAA84C8CA3FDD75E0C98
++    URL https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.8.10+release.autotools.tar.gz
++    URL_HASH SHA256=976D259288C40CD285771F77D09EFF3D02514511D5677ECFCFB53BE5013317E2
+     DOWNLOAD_DIR ${SOURCE_LOCATION}
+     CONFIGURE_COMMAND ${EXEC} autoreconf -fi && CONF=1 <SOURCE_DIR>/configure
+         --host=${TARGET_ARCH}
+-- 
+2.45.2.windows.1
+
